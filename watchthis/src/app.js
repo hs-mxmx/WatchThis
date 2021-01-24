@@ -5,7 +5,7 @@ import * as ROUTES from './constants/routes';
 
 export default function App() {
   return  (
-    <p>Hello brothers xD</p>
+    <p>Hello brothers</p>
   );
 };
 
