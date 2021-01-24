@@ -1,12 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Home, Browse, Signin, Signup } from './pages';
+import { Home } from './pages/home';
 import * as ROUTES from './constants/routes';
+import {FormContainer} from "./containers/form";
 import { FaceContainer } from './containers/face';
 
 export default function App() {
   return  (
-      <FaceContainer/>
+      <Router>
+        <Route path="/">
+          <Home/>
+        </Route>
+      </Router>
   );
 };
 
