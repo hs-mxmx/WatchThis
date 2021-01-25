@@ -4,13 +4,19 @@ import { Link as ReactRouterLink } from 'react-router-dom';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #1A1A1A;
+  background-color: #111111;
   border-radius: 5px;
   width: 100%;
   margin: auto;
   height: 550px;
   max-width: 450px;
   padding: 60px 68px 40px;
+  opacity: 0.9;
+  transition: 0.3s;
+  &:hover {
+    opacity: 1;
+    transition: 0.3s;
+  }
 `;
 
 export const Error = styled.div`

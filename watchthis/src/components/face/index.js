@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Title, Subtitle } from './styles/face';
+import { Container, Title, Subtitle } from './styles/faceStyle';
 
 
 export default function Face({ children, ...restProps }) {

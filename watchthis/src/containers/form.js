@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 import { Form } from '../components';
 
-export function FormContainer({children}) {
+export function FormContainer() {
 
     const [emailAddress, setEmailAddress] = useState('');
     const [password, setPassword] = useState('');
@@ -9,7 +9,6 @@ export function FormContainer({children}) {
     const isInvalid = password === '' || emailAddress === '';
 
     return ( 
-        <>
         <Form>
                     <Form.Title>Account Login</Form.Title>
                     {error && <Form.Error>{error}</Form.Error>}
@@ -33,12 +32,11 @@ export function FormContainer({children}) {
                     </Form.Base>
                     <Form.Break />
                     <Form.Text>
-                        New to Netflix? <Form.Link to="/signup">Sign up now.</Form.Link>
+                        Don´t have an account? <Form.Link to="/signup">Sign up!</Form.Link>
                     </Form.Text>
                     <Form.TextSmall>
-                        This page is protected by Google reCAPTCHA to ensure you are not a bo. Learn more.
+                        This page is protected by Google reCAPTCHA to ensure you are not a bot.
                     </Form.TextSmall>
-                </Form>
-        </>
+        </Form>
     )
 }
