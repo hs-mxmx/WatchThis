@@ -1,11 +1,16 @@
-import React from 'react';
-import { Face } from '../components';
-import { FaceContainer } from '../containers/face';
+import { FormContainer } from "../containers/form";
+import { FaceContainer } from "../containers/face";
+import { FooterContainer } from "../containers/footer";
+import {Background} from "../components";
 
-export default function Home() {
-    return (
+export function Home() {
+    return(
         <>
-            <FaceContainer/>
+            <Background>
+                <FaceContainer/>
+                <FormContainer/>
+            </Background>
+            <FooterContainer/>
         </>
-    );
+    )
 };
