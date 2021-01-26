@@ -2,13 +2,14 @@ import styled from 'styled-components/macro';
 import { Link as ReactRouterLink } from 'react-router-dom';
 
 export const Container = styled.div`
+ 
   display: flex;
   flex-direction: column;
   background-color: #111111;
   border-radius: 5px;
   width: 100%;
   margin: auto;
-  height: 550px;
+  height: auto;
   max-width: 450px;
   padding: 60px 68px 40px;
   opacity: 0.9;
