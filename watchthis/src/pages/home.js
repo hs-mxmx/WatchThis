@@ -1,10 +1,14 @@
 import { Form } from "../components";
 import React, {useState, useContext} from 'react';
+import { useHistory } from 'react-router-dom';
 import { FaceContainer } from "../containers/face";
 import { FooterContainer } from "../containers/footer";
 import {Background} from "../components";
 
 export function Home() {
+    const history = useHistory();
+    const [firstName, setFirstName] = useState('');
+    const [userName, setUserName] = useState('');
     const [emailAddress, setEmailAddress] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');

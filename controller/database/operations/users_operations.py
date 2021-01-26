@@ -1,11 +1,13 @@
 from flask import request, Response
 from database.models.users_models import Users
 import json
+from flask_cors import CORS, cross_origin
 
 
 def init_users(app):
 
     @app.route("/users")
+    @cross_origin(origin='localhost', headers=['Content- Type','Authorization'])
     def get_users():
         try:
             users = Users.objects().to_json()
@@ -16,18 +18,23 @@ def init_users(app):
         return Response(users, mimetype="application/json", status=200)
 
     @app.route('/users', methods=['POST'])
+    @cross_origin(origin='localhost, headers=['Content- Type','Authorization'])
     def add_users_body():
         try:
-            body = request.get_json()
+            # Check json and raw data in bytes
+            body = request.get_data()
+            body = body.decode('utf8').replace("'", '"')
+            body = json.loads(body)
             users = Users(**body).save().to_json()
             user = json.loads(users)
         except(Exception):
-            message = {"Error": "Invalid add action request for users, please check URL, METHOD, or data TYPE for request."}
+            message = {Exception}
             print(message)
             return message
         return {"Add action": {"id": user["_id"]["$oid"], "user": user["name"]}}
 
     @app.route('/users/<id>', methods=['PUT'])
+    @cross_origin()
     def update_users(id):
         try:
             body = request.get_json()
@@ -39,6 +46,7 @@ def init_users(app):
         return {"Update action": {"user": body["name"]}}
 
     @app.route('/users/<id>', methods=['DELETE'])
+    @cross_origin()
     def delete_user(id):
         try:
             Users.objects.get(id=id).delete()
@@ -49,6 +57,7 @@ def init_users(app):
         return {"Delete action": {"id": id}}
 
     @app.route('/users/<id>', methods=['GET'])
+    @cross_origin()
     def get_user(id):
         try:
             users = Users.objects.get(id=id).to_json()
