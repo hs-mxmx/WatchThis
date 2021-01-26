@@ -1,13 +1,13 @@
 from flask import request, Response
 from database.models.users_models import Users
 import json
-from flask_cors import CORS, cross_origin
+from flask_cors import cross_origin
 
 
 def init_users(app):
 
     @app.route("/users")
-    @cross_origin(origin='localhost', headers=['Content- Type','Authorization'])
+    @cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
     def get_users():
         try:
             users = Users.objects().to_json()
@@ -18,7 +18,7 @@ def init_users(app):
         return Response(users, mimetype="application/json", status=200)
 
     @app.route('/users', methods=['POST'])
-    @cross_origin(origin='localhost, headers=['Content- Type','Authorization'])
+    @cross_origin(origin='localhost', headers=['Content- Type','Authorization'])
     def add_users_body():
         try:
             # Check json and raw data in bytes
