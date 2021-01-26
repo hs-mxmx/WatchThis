@@ -18,7 +18,7 @@ def init_users(app):
         return Response(users, mimetype="application/json", status=200)
 
     @app.route('/users', methods=['POST'])
-    @cross_origin(origin='localhost, headers=['Content- Type','Authorization'])
+    @cross_origin(origin='localhost', headers=['Content- Type','Authorization'])
     def add_users_body():
         try:
             # Check json and raw data in bytes
