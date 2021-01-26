@@ -1,2 +1,4 @@
 Flask==1.1.2
 flask-mongoengine==1.0.0
+python-dotenv==0.15.0
+
