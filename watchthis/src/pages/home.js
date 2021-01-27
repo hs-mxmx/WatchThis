@@ -4,15 +4,59 @@ import { useHistory } from 'react-router-dom';
 import { FaceContainer } from "../containers/face";
 import { FooterContainer } from "../containers/footer";
 import {Background} from "../components";
+import * as ROUTES from '../constants/routes';
 
 export function Home() {
     const history = useHistory();
-    const [firstName, setFirstName] = useState('');
-    const [userName, setUserName] = useState('');
     const [emailAddress, setEmailAddress] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const isInvalid = password === '' || emailAddress === '';
+
+    const handleSignIn = (event) => {
+        event.preventDefault();
+
+        fetch("http://127.0.0.1:5000/browse", {
+            method:"POST",
+            cache: "no-cache",
+            headers:{
+                "content_type":"application/json",
+            },
+            body:JSON.stringify(        
+                {"email": emailAddress,
+                "password": password
+                }
+            )}
+        )
+        .then(response => {
+            return response.json().then( (data) => 
+                
+                {//console.log(data)
+                    if ("Error" in data.message) {
+                    setEmailAddress('');
+                    setPassword('');
+                    setError(data.message["Error"]);
+                } else {
+                    history.push({
+                        pathname: ROUTES.BROWSE,
+                        state: { detail: {
+                            'password': password,
+                            'email': emailAddress,
+                            'message': data.message["Success"]
+                        } }
+                    });
+                }}
+            );
+        })
+        .catch((error) => {
+            setEmailAddress('');
+            setPassword('');
+            console.log(error)
+            setError(error.message);
+        });;
+
+    }
+
     return(
         <>
             <Background>
@@ -21,7 +65,7 @@ export function Home() {
                     <Form.Title>Account Login</Form.Title>
                     {error && <Form.Error>{error}</Form.Error>}
 
-                    <Form.Base  method="POST">
+                    <Form.Base onSubmit={handleSignIn} method="POST">
                         <Form.Input
                             type="email"
                             placeholder="Email address"

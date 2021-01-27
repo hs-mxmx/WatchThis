@@ -31,22 +31,27 @@ export function FormContainer() {
             )}
         )
         .then(response => {
-            console.log(JSON.stringify(
-                {"name": username,
-                "username": alias,
-                "email": emailAddress,
-                "password": password
-                }
-            ))
-        })
-        .then(() => {
-            history.push(ROUTES.HOME)
+            return response.json().then( (data) => 
+                
+                {//console.log(data)
+                    if ("Error" in data.message) {
+                    setUsername('');
+                    setAlias('');
+                    setPassword('');
+                    setConfirmPassword('');
+                    setEmailAddress('');
+                    setError(data.message["Error"]);
+                } else {
+                    history.push(ROUTES.HOME)
+                }}
+            );
         })
         .catch((error) => {
             setUsername('');
             setAlias('');
             setPassword('');
             setConfirmPassword('');
+            console.log(error)
             setError(error.message);
         });;
 
