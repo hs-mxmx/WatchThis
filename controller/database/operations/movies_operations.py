@@ -1,59 +1,71 @@
-from flask import request, Response
+from flask import request, jsonify
 from database.models.movies_models import Movies
 import json
+from flask_cors import cross_origin, CORS
 
 
 def init_movies(app):
+    CORS(app)
 
     @app.route("/movies")
+    @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
     def get_movies():
         try:
-            movies = Movies.objects().to_json()
-        except(Exception):
-            message = {"Error": "Invalid get action for movies, please check URL and METHOD for request."}
+            message = Movies.objects().to_json()
+            # message = json.loads(message)
+        except Exception:
+            message = {"Error": "Couldn't get any movie, try again later..."}
             print(message)
-            return message
-        return Response(movies, mimetype="application/json", status=200)
+            return jsonify(message), 200
+        return jsonify(message), 200
+
+    @app.route('/movies/<id>', methods=['GET'])
+    @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
+    def get_movie(id):
+        try:
+            message = Movies.objects.get(id=id).to_json()
+            # message = json.loads(message)
+        except Exception:
+            message = {"Error": "Couldn't get specified movie, try again later..."}
+            return jsonify(message), 200
+        return jsonify(message), 200
 
     @app.route('/movies', methods=['POST'])
+    @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
     def add_movies_body():
         try:
-            body = request.get_json()
+            body = request.get_data()
+            body = body.decode('utf8').replace("'", '"')
+            body = json.loads(body)
             movie = Movies(**body).save().to_json()
-            movie = json.loads(movie)
-        except(Exception):
-            message = {"Error": "Invalid add action request for movies, please check URL, METHOD, or data TYPE for request."}
-            print(message)
-            return message
-        return {"Add action": {"id": movie["_id"]["$oid"], "movie": movie["name"]}}
+            message = {"Success": 'Movie created successfully!'}
+            # episode = json.loads(movie)
+        except Exception:
+            message = {"Error": "Invalid movie data, try again later..."}
+            return jsonify(message), 200
+        return jsonify(message), 200
 
     @app.route('/movies/<id>', methods=['PUT'])
+    @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
     def update_movies(id):
         try:
             body = request.get_json()
-            Movies.objects.get(id=id).update(**body)
-        except(Exception):
-            message = {"Error": "Invalid update action for movies, please check URL and METHOD for request."}
-            print(message)
-            return message
-        return {"Update action": {"movie": body["name"]}}
+            movie = Movies.objects.get(id=id).update(**body)
+            movie = Movies.objects.get(id=id)
+            message = {"Success": 'Movie updated successfully!'}
+        except Exception:
+            message = {"Error": "Couldn't update selected movie, try again later..."}
+            return jsonify(message), 200
+        return jsonify(message), 200
 
     @app.route('/movies/<id>', methods=['DELETE'])
+    @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
     def delete_movie(id):
         try:
+            movie = Movies.objects(id=id)
             Movies.objects.get(id=id).delete()
-        except(Exception):
-            message = {"Error": "Invalid delete action for movies, please check URL and METHOD for request."}
-            print(message)
-            return message
-        return {"Delete action": {"id": id}}
-
-    @app.route('/movies/<id>', methods=['GET'])
-    def get_movie(id):
-        try:
-            movies = Movies.objects.get(id=id).to_json()
-        except(Exception):
-            message = {"Error": "Invalid get action for selected movie, please check URL and METHOD for request."}
-            print(message)
-            return message
-        return Response(movies, mimetype="application/json", status=200)
+            message = {'Success': "Movie deleted successfully!"}
+        except Exception:
+            message = {"Error": "Couldn't delete selected movie, try again later..."}
+            return jsonify(message=message), 200
+        return jsonify(message=message), 200

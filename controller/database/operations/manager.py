@@ -24,7 +24,7 @@ def init_manager(app):
 
             return jsonify(message=message), 200
 
-        except(Exception):
+        except Exception:
             message = {"Error": "Wrong credentials..."}
             print(message)
             return jsonify(message=message), 200
