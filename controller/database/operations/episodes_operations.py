@@ -7,12 +7,7 @@ def init_episodes(app):
 
     @app.route("/episodes")
     def get_episodes():
-        try:
-            episodes = Episodes.objects().to_json()
-        except(Exception):
-            message = {"Error": "Invalid get action for episodes, please check URL and METHOD for request."}
-            print(message)
-            return message
+        episodes = Episodes.objects().to_json()
         return Response(episodes, mimetype="application/json", status=200)
 
     @app.route('/episodes', methods=['POST'])

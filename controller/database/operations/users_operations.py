@@ -1,13 +1,15 @@
-from flask import request, Response
+from flask import request, Response, jsonify
 from database.models.users_models import Users
 import json
-from flask_cors import cross_origin
+from flask_cors import cross_origin, CORS
 
 
 def init_users(app):
 
+    CORS(app)
+
     @app.route("/users")
-    @cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
+    @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
     def get_users():
         try:
             users = Users.objects().to_json()
@@ -18,7 +20,7 @@ def init_users(app):
         return Response(users, mimetype="application/json", status=200)
 
     @app.route('/users', methods=['POST'])
-    @cross_origin(origin='localhost', headers=['Content- Type','Authorization'])
+    @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
     def add_users_body():
         try:
             # Check json and raw data in bytes
@@ -28,10 +30,11 @@ def init_users(app):
             users = Users(**body).save().to_json()
             user = json.loads(users)
         except(Exception):
-            message = {Exception}
-            print(message)
-            return message
-        return {"Add action": {"id": user["_id"]["$oid"], "user": user["name"]}}
+            message = {"Error": "Invalid add action for users, try with another email or username!"}
+            return jsonify(message=message), 200
+
+        message = {"Success": "User created"}
+        return jsonify(message=message), 200
 
     @app.route('/users/<id>', methods=['PUT'])
     @cross_origin()
