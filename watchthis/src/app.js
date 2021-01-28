@@ -1,19 +1,18 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { Home } from './pages/home';
 import { Signup } from './pages/signup';
 import { Browse } from './pages/browse';
 import { Index } from './pages/index';
 import { Movies } from './pages/movies';
 
-import * as ROUTES from './constants/routes';
-import {FormContainer} from "./containers/form";
-import { FaceContainer } from './containers/face';
-
 export default function App() {
   return  (
       <Router>
         <Route exact path="/">
+          <Index/>
+        </Route>
+        <Route exact path="/home">
           <Home/>
         </Route>
         <Route exact path="/signup">
@@ -25,6 +24,7 @@ export default function App() {
         <Route exact path="/movies">
           <Movies/>
         </Route>
+        
       </Router>
   );
 };
