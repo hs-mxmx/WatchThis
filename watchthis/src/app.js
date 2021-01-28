@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Home } from './pages/home';
 import { Signup } from './pages/signup';
 import { Browse } from './pages/browse';
+import { Index } from './pages/index';
+import { Movies } from './pages/movies';
 
 import * as ROUTES from './constants/routes';
 import {FormContainer} from "./containers/form";
@@ -19,6 +21,9 @@ export default function App() {
         </Route>
         <Route exact path="/browse">
           <Browse/>
+        </Route>
+        <Route exact path="/movies">
+          <Movies/>
         </Route>
       </Router>
   );

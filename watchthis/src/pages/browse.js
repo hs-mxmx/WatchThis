@@ -3,6 +3,7 @@ import React, {useState, useContext, useEffect} from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { FaceContainer } from "../containers/face";
 import { FooterContainer } from "../containers/footer";
+import { MediaContainer } from "../containers/media";
 import {Background} from "../components";
 
 export function Browse() {
@@ -34,7 +35,8 @@ export function Browse() {
                     <Form.Title>{password}</Form.Title>           
                 </Form>
             </Background>
-            <FooterContainer/>
+            <MediaContainer/>
+            
         </>
     )
 };

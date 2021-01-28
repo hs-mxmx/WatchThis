@@ -6,6 +6,6 @@ export const Background = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: grey;
-  background-image: url("images/xd.jpg");
+  background-image: url("images/background.jpg");
   height:100vh;
 `;
