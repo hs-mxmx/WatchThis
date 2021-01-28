@@ -1,6 +1,7 @@
 import styled from 'styled-components/macro';
 
 export const Container = styled.div`
+font-family: 'Josefin Sans', sans-serif;
 display: flex;
 align-items: center;
 height: 50%;
@@ -17,6 +18,7 @@ export const Title = styled.h1`
 `;
 
 export const Subtitle = styled.h3`
+  font-family: 'Titillium Web', sans-serif;
   color: white;
   font-style: italic;
 `;
