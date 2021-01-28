@@ -1,12 +1,11 @@
 import styled from 'styled-components/macro';
 
 export const Container = styled.div`
-  display: flex;
-  align-items: center;
-  height: 50%;
-  width: 50%;
-  flex-direction: column;
-
+display: flex;
+align-items: center;
+height: 50%;
+width: 50%;
+flex-direction: column;
 `;
 
 export const Title = styled.h1`
