@@ -6,7 +6,7 @@ import json
 
 def init_manager(app):
 
-    @app.route("/browse", methods=['POST'])
+    @app.route("/home", methods=['POST'])
     @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
     def get_login():
         try:
