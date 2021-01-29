@@ -1,23 +1,15 @@
 import React, { useState, useEffect} from 'react';
 import { Media } from '../components';
 
-export function MediaContainer() {
-    /*Para cambiar la imagen principal*/
-    const [featureImage, setFeatureImage] = useState('images/film2.jpg');
-    
-    useEffect(() => {
-        /*Cada vez que cambie la imagen carga el contenido de la peli/serie/anime*/
-        console.log('cambiar la descripcion con fetch balbla.com/${variable}')
-    }, [featureImage]); 
 
+export function MediaContainer() {
+    const [featureImage, setFeatureImage] = useState('images/film2.jpg');
     return ( 
-        /*Aquí faltaría un header con buscador*/
         <Media>
             <Media.Feature> 
                 <Media.FeatureImage src={featureImage}/>
             </Media.Feature>
             <Media.Box>
-                <Media.Title>MOVIES</Media.Title>
                 <Media.Carousel>
                     <Media.Card onClick={() => setFeatureImage('images/film1.jpg')}>
                         <Media.CardImage src={'images/film1.jpg'}/>

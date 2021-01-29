@@ -13,6 +13,43 @@ export function Index() {
     const [error, setError] = useState('');
     const isInvalid = password === '' || emailAddress === '';
 
+    /*function handleNav(xd) {
+        const handleSignIn = (event) => {
+            event.preventDefault();
+    
+            fetch("http://127.0.0.1:5000/browse", {
+                method:"POST",
+                cache: "no-cache",
+                headers:{
+                    "content_type":"application/json",
+                },
+                body:JSON.stringify(        
+                    {"email": emailAddress,
+                    "password": password
+                    }
+                )}
+            )
+            .then(response => {
+                return response.json().then( (data) =>      
+                    {//console.log(data)
+                        if ("Error" in data.message) {
+                        setEmailAddress('');
+                        setPassword('');
+                        setError(data.message["Error"]);
+                    } else {
+                        history.push({
+                            pathname: ROUTES.BROWSE,
+                            state: { detail: {
+                                'title': xd,
+                                'email': emailAddress,
+                                'message': data.message["Success"]
+    
+                            } }
+                        });
+                    }}
+                );
+            })
+    }*/
     const handleSignIn = (event) => {
         event.preventDefault();
 
@@ -42,6 +79,7 @@ export function Index() {
                             'password': password,
                             'email': emailAddress,
                             'message': data.message["Success"]
+
                         } }
                     });
                 }}

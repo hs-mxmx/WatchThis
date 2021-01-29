@@ -6,6 +6,7 @@ import { Signup } from './pages/signup';
 import { Movies } from './pages/movies';
 import { Series } from './pages/series';
 import { Anime } from './pages/anime';
+import { Browse } from './pages/browse';
 
 export default function App() {
   return  (
@@ -27,6 +28,9 @@ export default function App() {
       </Route>
       <Route exact path="/anime">
         <Anime/>
+      </Route>
+      <Route exact path="/browse">
+        <Browse/>
       </Route>
     </Router>
   );
