@@ -1,10 +1,11 @@
 import React, {useState, useContext, useEffect} from 'react';
 import { MediaContainer } from "../containers/media";
 import { Media } from "../components";
-export function Movies() {
+
+export function Anime() {
 
     return(<>
-            <Media.Title>MOVIES</Media.Title>
+            <Media.Title>Anime</Media.Title>
             <MediaContainer/>
         </>
     )

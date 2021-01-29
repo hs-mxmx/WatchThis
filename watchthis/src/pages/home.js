@@ -2,8 +2,8 @@ import { Form } from "../components";
 import React, {useState, useContext, useEffect} from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { FaceContainer } from "../containers/face";
-import { FooterContainer } from "../containers/footer";
 import { MediaContainer } from "../containers/media";
+import { FooterContainer } from "../containers/footer";
 import {Background} from "../components";
 import * as ROUTES from '../constants/routes';
 
@@ -18,7 +18,8 @@ export function Home() {
     const isInvalid = password === '' || emailAddress === '';
 
     const userdata = location.state.detail
-    
+    console.log(userdata);
+
     useEffect(() => {
         setEmailAddress(userdata['email']);
         setPassword(userdata['password']);
@@ -33,11 +34,12 @@ export function Home() {
                 <Form>
                     {message && <Form.Error>{message}</Form.Error>}
                     <Form.Title>{emailAddress}</Form.Title>
-                    <Form.Title>{password}</Form.Title>   
-                    <a href={ROUTES.MOVIES}>PELIS</a>        
+                    <Form.Title>{password}</Form.Title>
+                    <a href={ROUTES.MOVIES}>MOVIES</a>
+                    <a href={ROUTES.SERIES}>SERIES</a>
+                    <a href={ROUTES.ANIME}>ANIME</a>
                 </Form>
-            </Background>     
-            
+            </Background>
         </>
     )
 };
