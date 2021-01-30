@@ -1,7 +1,7 @@
 from database.db import db
 
 
-class Series(db.Document):
+class Animes(db.Document):
     type = db.StringField(required=True)
     name = db.StringField(required=True)
     description = db.StringField(required=True)
