@@ -1,4 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react';
+import { MoviesContainer } from "../containers/movies";
 import { MediaContainer } from "../containers/media";
 import { HeaderContainer } from "../containers/header"
 import { Header } from '../components';
@@ -7,15 +8,12 @@ import { NavHeader, NavUl, NavIl } from '../components/header/styles/headerStyle
 import * as ROUTES from '../constants/routes';
 import { Media } from "../components";
 export function Movies() {
-
     return(<>
-            <Media.Title>MOVIES</Media.Title>
-
-           <HeaderContainer>
+            <HeaderContainer>
                 <NavHeader>                    
                 </NavHeader>
             </HeaderContainer>
-            <MediaContainer/>
+            <MoviesContainer/>
         </>
     )
 };

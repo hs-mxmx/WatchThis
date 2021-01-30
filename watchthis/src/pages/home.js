@@ -2,7 +2,7 @@ import { Form } from "../components";
 import React, {useState, useContext, useEffect} from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { FaceContainer } from "../containers/face";
-import { MediaContainer } from "../containers/media";
+import { MoviesContainer } from "../containers/movies";
 import { FooterContainer } from "../containers/footer";
 import {Background} from "../components";
 import * as ROUTES from '../constants/routes';
