@@ -18,6 +18,7 @@ export const Container = styled.div`
     opacity: 1;
     transition: 0.3s;
   }
+  
 `;
 
 export const Error = styled.div`
@@ -59,7 +60,6 @@ export const TextSmall = styled.p`
 export const Link = styled(ReactRouterLink)`
   color: #fff;
   text-decoration: none;
-
   &:hover {
     text-decoration: underline;
   }

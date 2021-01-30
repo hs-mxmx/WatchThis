@@ -1,5 +1,5 @@
 import React, { useState, useContext, createContext } from 'react';
-import {Container, Carousel, Title, CardImage, Card, Feature, FeatureImage, Box, Description, FeatureTitle, FeatureLink, FeatureData, FeatureContent} from './styles/mediaStyle';
+import {Container, Carousel, Title, CardImage, Card, Feature, FeatureImage, Box, Content, FeatureTitle, FeatureLink, FeatureData, FeatureContent, Category} from './styles/mediaStyle';
 
 export const FeatureContext = createContext();
 
@@ -35,8 +35,12 @@ Media.FeatureTitle = function MediaFeatureTitle({ children, ...restProps}) {
     return <FeatureTitle {...restProps}>{children}</FeatureTitle>
 }
 
-Media.Description = function MediaDescription({ children, ...restProps}) {
-    return <Description {...restProps}>{children}</Description>
+Media.Content = function MediaContent({ children, ...restProps}) {
+    return <Content {...restProps}>{children}</Content>
+}
+
+Media.Category = function MediaCategory({ children, ...restProps}) {
+    return <Category {...restProps}>{children}</Category>
 }
 
 Media.Card = function MediaCard({...restProps}) {

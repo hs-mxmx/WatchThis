@@ -5,6 +5,15 @@ export const Container = styled.div `
   height: 100vh;
   width: 100%;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Titillium Web', sans-serif;
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 1500px;
+    border:1px solid black;
+ }
 `;
 
 export const Box = styled.div`
@@ -14,8 +23,8 @@ export const Box = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background-color: #111111;
-  font-family: 'Titillium Web', sans-serif;
+  background-color: black;
+  
 `;
 
 export const Carousel = styled.div `
@@ -25,10 +34,13 @@ export const Carousel = styled.div `
   width: 90%;
   overflow-x: scroll;
   overflow-y: hidden;
-  scroll-behavior: smooth;
-  flex: nowrap;
   height: 300px;
-  
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 150px;
+    border:1px solid black;
+ }
 `;
 
 export const Card = styled.div `
@@ -42,7 +54,6 @@ export const Card = styled.div `
     cursor: pointer;
     box-shadow: 0 0 10px 2px grey;
   }
-  
 `;
 
 export const Title = styled.p `
@@ -56,7 +67,7 @@ export const Feature = styled.div`
   width: 100%;
   height:  75%;
   display: flex;
-  margin: 0;
+  margin: 300px 0 0 0;
 `;
 
 export const FeatureData = styled.div`
@@ -64,8 +75,8 @@ export const FeatureData = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0;
-  align-text: justify;
-  overflow-wrap: anywhere;
+  text-align: justify;
+
   height: 100%;
 `;
 
@@ -75,12 +86,18 @@ export const FeatureTitle = styled.p `
   -webkit-text-fill-color: transparent;
   font-size: 72px;
   margin: 0 0 20px 0;
+  width: 1000px;
 `;
 
-export const Description = styled.div `
-  font-size: 22px;
-  color: #DADADA;
-  margin-left: 10px;
+export const Category = styled.div`
+  font-size: 18px;
+  color: white;
+  margin-bottom: 3px;
+`;
+export const Content = styled.div `
+  font-size: 14px;
+  color: #7F7F7F;
+  margin-bottom: 15px;
 `;
 
 export const FeatureContent = styled.div `
@@ -90,9 +107,12 @@ export const FeatureContent = styled.div `
   transform: translate(-50%, -50%);
   display: flex;
   width: 70%;
-  height: 40%;
-  justify-content: space-around;
+  height: 55%;
+  justify-content: space-between;
   align-items: center;
+  background-color: rgba(0,0,0,0.8);
+  padding: 30px;
+  border-radius: 10px;
 `;
 
 
@@ -103,17 +123,20 @@ export const CardImage = styled.img `
 
 export const FeatureImage = styled.img `
   width: 100%;
-  opacity: 0.2;
+  opacity: 0.5;
+  
 `;
 
-export const FeatureLink = styled.button `
+export const FeatureLink = styled.a `
   background-color: #084E37;
-  padding: 25px;
-  font-size: 36px;
+  padding: 10px;
+  font-size: 24px;
   border: 3px solid black;
   border-radius: 40px;
+  text-align: center;
+  margin: 100px;
   color: grey;
-  width: 600px;
+  width: 400px;
   box-shadow: 0 0 10px 2px black;
   &:hover {
     cursor: pointer;
@@ -122,4 +145,5 @@ export const FeatureLink = styled.button `
     border: 3px solid grey;
     color: white;
   }
+  text-decoration: none;
 `;
