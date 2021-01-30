@@ -5,13 +5,14 @@ import { Header } from '../components';
 import { Background } from '../components/background/styles/backgroundStyle';
 import { NavHeader, NavUl, NavIl } from '../components/header/styles/headerStyle';
 import * as ROUTES from '../constants/routes';
-
+import { Media } from "../components";
 export function Movies() {
-    return(
-        <>
-            <HeaderContainer>
-                <NavHeader>
-                    
+
+    return(<>
+            <Media.Title>MOVIES</Media.Title>
+
+           <HeaderContainer>
+                <NavHeader>                    
                 </NavHeader>
             </HeaderContainer>
             <MediaContainer/>

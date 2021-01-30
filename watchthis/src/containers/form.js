@@ -42,7 +42,14 @@ export function FormContainer() {
                     setEmailAddress('');
                     setError(data.message["Error"]);
                 } else {
-                    history.push(ROUTES.HOME)
+                    history.push({
+                        pathname: ROUTES.BROWSE,
+                        state: { detail: {
+                            'password': password,
+                            'email': emailAddress,
+                            'message': data.message["Success"]
+                        } }
+                    });
                 }}
             );
         })
