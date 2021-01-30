@@ -1,35 +1,60 @@
-import React from 'react';
-import {Container, CarouselContainer, Carousel, Title, Tab, Link, ArrowLeft, ArrowRight} from './styles/mediaStyle';
+import React, { useState, useContext, createContext } from 'react';
+import {Container, Carousel, Title, Item, CardImage, Card, Feature, FeatureImage, Box, FeatureTitle, FeatureDescription, FeatureLink} from './styles/mediaStyle';
 
+export const FeatureContext = createContext();
 
 export default function Media({ children, ...restProps }) {
     return <Container {...restProps}>{children}</Container>;
 }
 
-Media.CarouselContainer = function MediaCarouselContainer({ children, ...restProps}){
-    return <CarouselContainer {...restProps}>{children}</CarouselContainer>;
-};
+Media.Box = function MediaBox({ children, ...restProps}) {
+    return <Box {...restProps}>{children}</Box>
+}
 
-Media.Carousel = function MediaCarousel({ children, ...restProps}){
-    return <Carousel {...restProps}>{children}</Carousel>;
-};
+Media.Carousel = function CardCarousel({ children, ...restProps}) {
+    const [showFeature, setShowFeature] = useState(false);
+    const [itemFeature, setItemFeature] = useState({});
 
-Media.Title = function MediaTitle({ children, ...restProps}){
-    return <Title {...restProps}>{children}</Title>;
-};
+    return (
+        <FeatureContext.Provider value={{ children, showFeature, setShowFeature, itemFeature, setItemFeature}}>
+            <Carousel { ...restProps}>{children}</Carousel>
+        </FeatureContext.Provider>
+    )
+}
 
-Media.Tab = function MediaTab({ children, ...restProps}){
-    return <Tab {...restProps}>{children}</Tab>;
-};
+Media.Title = function CardTitle({ children, ...restProps}) {
+    return <Title {...restProps}>{children}</Title>
+}
 
-Media.Link = function MediaLink({ children, ...restProps}){
-    return <Link {...restProps}>{children}</Link>;
-};
+Media.Card = function MediaCard({...restProps}) {
+    return <Card {...restProps}></Card>
 
-Media.ArrowLeft = function MediaArrowLeft({ children, ...restProps}){
-    return <ArrowLeft {...restProps}><i class="fas fa-angle-left"></i></ArrowLeft>;
-};
+}
 
-Media.ArrowRight = function MediaArrowRight({ children, ...restProps}){
-    return <ArrowRight {...restProps}><i class="fas fa-angle-right"></i></ArrowRight>;
-};
+Media.CardImage = function MediaCardImage({...restProps}) {
+    return <CardImage {...restProps}></CardImage>
+}
+
+Media.Item = function CardItem({ item, children, ...restProps}) {
+    const { setShowFeature, setItemFeature } = useContext(FeatureContext);
+
+    return (
+        <Item 
+            onClick={() => {
+                /*setIteamFeature(item);*/
+                setShowFeature(true);
+            }}
+            { ...restProps}
+        >
+            {children}
+        </Item>
+    )
+}
+
+Media.Feature = function MediaFeature({ children, ...restProps}) {
+    return <Feature {...restProps}>{children}</Feature>
+}
+
+Media.FeatureImage = function MediaFeatureImage({...restProps}) {
+    return <FeatureImage {...restProps}></FeatureImage>
+}
