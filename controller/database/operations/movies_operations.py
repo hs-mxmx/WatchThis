@@ -24,11 +24,11 @@ def init_movies(app):
     def get_movie(id):
         try:
             message = Movies.objects.get(id=id).to_json()
-            # message = json.loads(message)
+            message = json.loads(message)
         except Exception:
             message = {"Error": "Couldn't get specified movie, try again later..."}
-            return jsonify(message), 200
-        return jsonify(message), 200
+            return jsonify(message=message), 200
+        return jsonify(message=message), 200
 
     @app.route('/movies', methods=['POST'])
     @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
@@ -53,8 +53,8 @@ def init_movies(app):
             movie = Movies.objects.get(id=id).update(**body)
             movie = Movies.objects.get(id=id)
             message = {"Success": 'Movie updated successfully!'}
-        except Exception:
-            message = {"Error": "Couldn't update selected movie, try again later..."}
+        except Exception as exc:
+            message = message = {"Error": "Couldn't update selected movie, try again later..."}
             return jsonify(message), 200
         return jsonify(message), 200
 
