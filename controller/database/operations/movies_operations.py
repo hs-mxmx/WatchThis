@@ -12,12 +12,12 @@ def init_movies(app):
     def get_movies():
         try:
             message = Movies.objects().to_json()
-            # message = json.loads(message)
+            message = json.loads(message)
         except Exception:
             message = {"Error": "Couldn't get any movie, try again later..."}
             print(message)
-            return jsonify(message), 200
-        return jsonify(message), 200
+            return jsonify(message=message), 200
+        return jsonify(message=message), 200
 
     @app.route('/movies/<id>', methods=['GET'])
     @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])

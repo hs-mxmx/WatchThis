@@ -12,12 +12,12 @@ def init_episodes(app):
     def get_episodes():
         try:
             message = Episodes.objects().to_json()
-            # message = json.loads(message)
+            message = json.loads(message)
         except Exception:
             message = {"Error": "Couldn't get any episode, try again later..."}
             print(message)
-            return jsonify(message), 200
-        return jsonify(message), 200
+            return jsonify(message=message), 200
+        return jsonify(message=message), 200
 
     @app.route('/episodes/<id>', methods=['GET'])
     @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])

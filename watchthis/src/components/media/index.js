@@ -1,5 +1,5 @@
 import React, { useState, useContext, createContext } from 'react';
-import {Container, Carousel, Title, Item, CardImage, Card, Feature, FeatureImage, Box, FeatureTitle, FeatureDescription, FeatureLink} from './styles/mediaStyle';
+import {Container, Carousel, Title, CardImage, Card, Feature, FeatureImage, Box, Description, FeatureTitle, FeatureLink, FeatureData, FeatureContent} from './styles/mediaStyle';
 
 export const FeatureContext = createContext();
 
@@ -22,8 +22,21 @@ Media.Carousel = function CardCarousel({ children, ...restProps}) {
     )
 }
 
-Media.Title = function CardTitle({ children, ...restProps}) {
+Media.Title = function MediaTitle({ children, ...restProps}) {
     return <Title {...restProps}>{children}</Title>
+}
+
+Media.FeatureData = function MediaFeatureData({ children, ...restProps}) {
+
+    return <FeatureData {...restProps}>{children}</FeatureData>
+}
+
+Media.FeatureTitle = function MediaFeatureTitle({ children, ...restProps}) {
+    return <FeatureTitle {...restProps}>{children}</FeatureTitle>
+}
+
+Media.Description = function MediaDescription({ children, ...restProps}) {
+    return <Description {...restProps}>{children}</Description>
 }
 
 Media.Card = function MediaCard({...restProps}) {
@@ -35,26 +48,20 @@ Media.CardImage = function MediaCardImage({...restProps}) {
     return <CardImage {...restProps}></CardImage>
 }
 
-Media.Item = function CardItem({ item, children, ...restProps}) {
-    const { setShowFeature, setItemFeature } = useContext(FeatureContext);
-
-    return (
-        <Item 
-            onClick={() => {
-                /*setIteamFeature(item);*/
-                setShowFeature(true);
-            }}
-            { ...restProps}
-        >
-            {children}
-        </Item>
-    )
-}
-
 Media.Feature = function MediaFeature({ children, ...restProps}) {
     return <Feature {...restProps}>{children}</Feature>
 }
 
-Media.FeatureImage = function MediaFeatureImage({...restProps}) {
+Media.FeatureContent = function MediaFeatureContent({ children, ...restProps}) {
+    return <FeatureContent {...restProps}>{children}</FeatureContent>
+}
+
+Media.FeatureLink = function MediaFeatureLink({ children, ...restProps}) {
+    return <FeatureLink {...restProps}>{children}</FeatureLink>
+}
+
+Media.FeatureImage = function MediaFeatureImage({ ...restProps}) {
     return <FeatureImage {...restProps}></FeatureImage>
 }
+
+
