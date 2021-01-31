@@ -9,7 +9,7 @@ export const Container = styled.div`
   border-radius: 5px;
   width: 100%;
   margin: auto;
-  height: auto;
+  height: 50%;
   max-width: 450px;
   padding: 60px 68px 40px;
   opacity: 0.9;
@@ -18,7 +18,7 @@ export const Container = styled.div`
     opacity: 1;
     transition: 0.3s;
   }
-  
+  overflow-y: auto;
 `;
 
 export const Error = styled.div`
@@ -99,4 +99,10 @@ export const Submit = styled.button`
 export const Break = styled.p`
     flex-basis: 100%;
     height: 0;
+`;
+
+export const Wrapper = styled.div`
+  margin-top: 300px;
+  height: 100%;
+  width: 100%;
 `;

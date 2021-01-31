@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
 import { Media } from '../components';
+import { HeaderContainer } from '../containers/header';
 
 export function MoviesContainer() {
     const [featureImage, setFeatureImage] = useState('images/film2.jpg');
@@ -115,6 +116,8 @@ export function MoviesContainer() {
      }, []);
 
     return ( 
+        <>
+        <HeaderContainer/>
         <Media>
             <Media.Feature>                 
                 <Media.FeatureImage src={mediaBackground}/>
@@ -139,5 +142,6 @@ export function MoviesContainer() {
                 </Media.Title>
             </Media.Box>
         </Media>
+        </>
     )
 }

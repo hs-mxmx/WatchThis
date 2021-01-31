@@ -1,4 +1,4 @@
-import { Form } from "../components";
+import { Footer, Form } from "../components";
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FaceContainer } from "../containers/face";
@@ -37,7 +37,7 @@ export function Index() {
                     setError(data.message["Error"]);
                 } else {
                     history.push({
-                        pathname: ROUTES.HOME,
+                        pathname: ROUTES.BROWSE,
                         state: { detail: {
                             'password': password,
                             'email': emailAddress,
@@ -94,7 +94,6 @@ export function Index() {
                 </Form.TextSmall>
             </Form>
         </Background>
-        <FooterContainer/>
         </>
     )
 };

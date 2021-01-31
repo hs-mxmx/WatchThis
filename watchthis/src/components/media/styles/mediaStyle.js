@@ -2,18 +2,11 @@ import styled from 'styled-components/macro';
 
 export const Container = styled.div `
   display: flex;
-  height: 100vh;
   width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: 'Titillium Web', sans-serif;
-  &::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 15px;
-    height: 1500px;
-    border:1px solid black;
- }
 `;
 
 export const Box = styled.div`
@@ -23,7 +16,7 @@ export const Box = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background-color: black;
+  background-color: #0c0c0c;
   
 `;
 
@@ -35,17 +28,11 @@ export const Carousel = styled.div `
   overflow-x: scroll;
   overflow-y: hidden;
   height: 300px;
-  &::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 15px;
-    height: 150px;
-    border:1px solid black;
- }
 `;
 
 export const Card = styled.div `
   min-width: 20%;
-  transition: 0.2s ease all
+  transition: 0.4s ease all;
   height: 165px;
   &:hover {
     transition: 0.2s ease all;
@@ -63,11 +50,11 @@ export const Title = styled.p `
 `;
 
 export const Feature = styled.div`
+  margin-top: 100px;
   position: relative;
-  width: 100%;
+  width: 90%;
   height:  75%;
   display: flex;
-  margin: 300px 0 0 0;
 `;
 
 export const FeatureData = styled.div`

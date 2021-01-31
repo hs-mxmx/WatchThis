@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Base, Error, Title, Text, TextSmall, Link, Input, Submit, Break } from './styles/formStyle';
+import { Container, Base, Error, Title, Text, 
+    TextSmall, Link, Input, Submit, Break, Wrapper } from './styles/formStyle';
 
 export default function Form({ children, ...restProps }) {
     return <Container {...restProps}>{children}</Container>;
@@ -43,4 +44,8 @@ Form.Submit = function FormSubmit({ children, ...restProps}){
 
 Form.Break = function FormBreak({ children, ...restProps }) {
     return <Break {...restProps}>{children}</Break>;
+};
+
+Form.Wrapper = function FormWrapper({ children, ...restProps }) {
+    return <Wrapper {...restProps}>{children}</Wrapper>;
 };
