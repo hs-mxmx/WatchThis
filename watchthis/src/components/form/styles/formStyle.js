@@ -106,3 +106,30 @@ export const Wrapper = styled.div`
   height: 100%;
   width: 100%;
 `;
+
+export const MailWrapper = styled.div`
+font-family: 'Titillium Web', sans-serif;
+display: flex;
+flex-direction: column;
+background-color: #111111;
+border-radius: 5px;
+width: 38%;
+margin: auto;
+height: 39%;
+max-width: 450px;
+padding: 20px 20px 20px;
+opacity: 0.9;
+transition: 0.3s;
+&:hover {
+  opacity: 1;
+  transition: 0.3s;
+}
+`;
+
+export const Select = styled.select`
+
+`;
+
+export const SelectOption = styled.option`
+
+`;

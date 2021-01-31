@@ -2,10 +2,12 @@ from flask import request, jsonify
 from database.models.anime_models import Animes
 import json
 from flask_cors import cross_origin, CORS
+from observer import Informer
 
 
 def init_animes(app):
     CORS(app)
+    observer = Informer()
 
     @app.route("/animes")
     @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
@@ -39,7 +41,10 @@ def init_animes(app):
             body = json.loads(body)
             anime = Animes(**body).save().to_json()
             message = {"Success": 'Anime created successfully!'}
-            # anime = json.loads(anime)
+            anime = json.loads(anime)
+            genres = anime['genres']
+            observer.send_mail('templates/media_templates.txt', anime['name'], genres[0], 'anime')
+
         except Exception:
             message = {"Error": "Invalid anime data, try again later..."}
             return jsonify(message), 200

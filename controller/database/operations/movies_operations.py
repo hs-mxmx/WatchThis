@@ -2,10 +2,12 @@ from flask import request, jsonify
 from database.models.movies_models import Movies
 import json
 from flask_cors import cross_origin, CORS
+from observer import Informer
 
 
 def init_movies(app):
     CORS(app)
+    observer = Informer()
 
     @app.route("/movies")
     @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
@@ -39,8 +41,12 @@ def init_movies(app):
             body = json.loads(body)
             movie = Movies(**body).save().to_json()
             message = {"Success": 'Movie created successfully!'}
-            # episode = json.loads(movie)
-        except Exception:
+            movie = json.loads(movie)
+            genres = movie['genres']
+            observer.send_mail('templates/media_templates.txt', movie['name'], genres[0], 'movie')
+
+        except Exception as ex:
+            print(ex)
             message = {"Error": "Invalid movie data, try again later..."}
             return jsonify(message), 200
         return jsonify(message), 200
