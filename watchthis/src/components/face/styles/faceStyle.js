@@ -4,7 +4,7 @@ export const Container = styled.div`
 font-family: 'Josefin Sans', sans-serif;
 display: flex;
 align-items: center;
-height: 50%;
+height: 100%;
 width: 50%;
 flex-direction: column;
 `;

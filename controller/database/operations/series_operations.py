@@ -2,10 +2,12 @@ from flask import request, jsonify
 from database.models.series_models import Series
 import json
 from flask_cors import cross_origin, CORS
+from observer import Informer
 
 
 def init_series(app):
     CORS(app)
+    observer = Informer()
 
     @app.route("/series")
     @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
@@ -39,7 +41,10 @@ def init_series(app):
             body = json.loads(body)
             serie = Series(**body).save().to_json()
             message = {"Success": 'Serie created successfully!'}
-            # serie = json.loads(serie)
+            serie = json.loads(serie)
+            genres = serie['genres']
+            observer.send_mail('templates/media_templates.txt', serie['name'], genres[0], 'serie')
+
         except Exception:
             message = {"Error": "Invalid serie data, try again later..."}
             return jsonify(message), 200
