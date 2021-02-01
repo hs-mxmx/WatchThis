@@ -1,5 +1,5 @@
-import React, { useState, useContext, createContext } from 'react';
-import {Container, Carousel, Title, CardImage, Card, Feature, FeatureImage, Box, Content, FeatureTitle, FeatureLink, FeatureData, FeatureContent, Category} from './styles/mediaStyle';
+import React, { useState, createContext } from 'react';
+import {Container, Carousel, DivFixer, Title, CardImage, Card, Feature, FeatureImage, Box, Content, FeatureTitle, FeatureLink, FeatureData, FeatureContent, Category} from './styles/mediaStyle';
 
 export const FeatureContext = createContext();
 
@@ -9,6 +9,10 @@ export default function Media({ children, ...restProps }) {
 
 Media.Box = function MediaBox({ children, ...restProps}) {
     return <Box {...restProps}>{children}</Box>
+}
+
+Media.DivFixer = function MediaDivFixer({ children, ...restProps}) {
+    return <DivFixer {...restProps}>{children}</DivFixer>
 }
 
 Media.Carousel = function CardCarousel({ children, ...restProps}) {

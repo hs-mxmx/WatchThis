@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { Face } from '../components';
 import { Form } from '../components';
 
@@ -21,38 +20,34 @@ function loadGenres(genres_array) {
 
 
 export function FaceContainer({ }) {
-    const history = useHistory();
     const [emailAddress, setEmailAddress] = useState('');
     const [error, setError] = useState('');
     const [genres, setGenres] = useState('');
     const isInvalid = emailAddress === '';
     const [selectValue, setSelectValue] = useState('');
 
-    const handleGenres = (event) => {
-        event.preventDefault();
-        fetch("http://127.0.0.1:5000/genres", {
-            method:"GET",
-            cache: "no-cache",
-            headers:{
-                "content_type":"application/json",
-            }}
-        )
-        .then(response => {
-            return response.json().then( (data) =>      
-                {
+    fetch("http://127.0.0.1:5000/genres", {
+        method:"GET",
+        cache: "no-cache",
+        headers:{
+            "content_type":"application/json",
+        }}
+    )
+    .then(response => {
+        return response.json().then( (data) =>      
+            {
                 if ("Error" in data.message) {
                     console.log(error)
                 } else {
                     setGenres(data.message);
                 }
             }
-            );
-        })
-        .catch((error) => {
-            console.log(error)
-        });
-
-    }
+        );
+    })
+    .catch((error) => {
+        console.log(error)
+    });
+    
 
     const handleNotifications = (event) => {
         event.preventDefault();
@@ -91,11 +86,6 @@ export function FaceContainer({ }) {
         <Face>
             <Face.Title>WATCHTHIS</Face.Title>
             <Face.Subtitle>The best flicks in two clicks.</Face.Subtitle>
-            <Form.Base onSubmit={handleGenres}>
-                <Form.Submit type="submit">
-                            Get notified!
-                </Form.Submit>
-            </Form.Base>
             <Form.MailWrapper>
                 <Form.Text>
                     Waiting for a new incoming movie? Be the first to know!
@@ -116,7 +106,7 @@ export function FaceContainer({ }) {
                             Submit
                         </Form.Submit>
                     </Form.Base>
-                </Form.MailWrapper>
+            </Form.MailWrapper>
         </Face>
     )
 }

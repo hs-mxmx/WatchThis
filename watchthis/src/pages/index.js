@@ -1,8 +1,7 @@
-import { Footer, Form } from "../components";
+import { Form } from "../components";
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FaceContainer } from "../containers/face";
-import { FooterContainer } from "../containers/footer";
 import { Background } from "../components";
 import * as ROUTES from '../constants/routes';
 
@@ -87,13 +86,14 @@ export function Index() {
                 </Form.Base>
                 <Form.Break/>
                 <Form.Text>
-                    Don´t have an account? <Form.Link to="/signup">Sign up!</Form.Link>
+                    Don´t have an account? <Form.Link to={ROUTES.SIGN_UP}>Sign up!</Form.Link>
                 </Form.Text>
                 <Form.TextSmall>
                     This page is protected by Google reCAPTCHA to ensure you are not a bot.
                 </Form.TextSmall>
             </Form>
         </Background>
+        
         </>
     )
 };
