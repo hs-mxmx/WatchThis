@@ -53,7 +53,7 @@ export const Feature = styled.div`
   margin-top: 100px;
   position: relative;
   width: 90%;
-  height:  75%;
+  height:  55%;
   display: flex;
 `;
 
@@ -61,9 +61,8 @@ export const FeatureData = styled.div`
   width: 30%;
   display: flex;
   flex-direction: column;
-  margin: 0;
   text-align: justify;
-
+  
   height: 100%;
 `;
 
@@ -72,7 +71,7 @@ export const FeatureTitle = styled.p `
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 72px;
-  margin: 0 0 20px 0;
+  margin: 0;
   width: 1000px;
 `;
 
@@ -84,7 +83,7 @@ export const Category = styled.div`
 export const Content = styled.div `
   font-size: 14px;
   color: #7F7F7F;
-  margin-bottom: 15px;
+  margin: 0 15px 15px;
 `;
 
 export const FeatureContent = styled.div `
@@ -102,6 +101,12 @@ export const FeatureContent = styled.div `
   border-radius: 10px;
 `;
 
+export const DivFixer = styled.div `
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: hidden;
+`;
 
 export const CardImage = styled.img `
   width: 100%;

@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
-import { Media } from '../components';
 import { Header } from '../components';
-import * as ROUTES from '../constants/routes';
-<script src="https://kit.fontawesome.com/99c2809234.js" crossorigin="anonymous"></script>
 
 function filterMedia(media, filter, total_medias) {
     var link_container = []
@@ -357,37 +354,3 @@ export function MediaContainer(filter) {
                     filterMedia(media, filter, total_medias)
         ) 
 }
-
-// {generateMediaFull(description, duration, img_url, name, links)}
-
-/*
-function generateMediaFull(description, duration, img_url, name, links){
-    var link_container = []
-    var media_container = []
-    var index = 0;
-    // Name must be declared (not invalid for loop)
-    for (var i = 0; i < name.length; i++) {
-        index += 1;
-        for (var _ = 0; _ < links[i].length; _++){
-            link_container.push(<Header.ListResultTitle>Link{_+1}: {links[i][_]}</Header.ListResultTitle>)
-        }
-        // console.log(link_container)
-        media_container.push(
-            <>
-            <Header.ListResult>
-                <Header.ListResultTitle>Episode: {name[i]}</Header.ListResultTitle>
-                <Header.ListResultTitle>Duration: {duration[i]}min</Header.ListResultTitle> 
-                <Header.ListResultTitle>Description: {description[i]}</Header.ListResultTitle>
-                {link_container}
-            </Header.ListResult>
-            <Media.Card>
-                <Media.CardImage key={index} src={img_url[i]}></Media.CardImage>
-            </Media.Card>
-            </>
-        )
-        link_container = []
-    }
-    
-    return media_container;
-}
-*/

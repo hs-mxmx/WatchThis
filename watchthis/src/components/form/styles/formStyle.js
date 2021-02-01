@@ -9,7 +9,7 @@ export const Container = styled.div`
   border-radius: 5px;
   width: 100%;
   margin: auto;
-  height: 50%;
+  height: 55%;
   max-width: 450px;
   padding: 60px 68px 40px;
   opacity: 0.9;
@@ -102,34 +102,27 @@ export const Break = styled.p`
 `;
 
 export const Wrapper = styled.div`
-  margin-top: 300px;
+  display: flex;
+  align-items: center;
   height: 100%;
-  width: 100%;
 `;
 
 export const MailWrapper = styled.div`
-font-family: 'Titillium Web', sans-serif;
-display: flex;
-flex-direction: column;
-background-color: #111111;
-border-radius: 5px;
-width: 38%;
-margin: auto;
-height: 39%;
-max-width: 450px;
-padding: 20px 20px 20px;
-opacity: 0.9;
-transition: 0.3s;
-&:hover {
-  opacity: 1;
-  transition: 0.3s;
-}
+  margin-top: 25px;
+  font-family: 'Titillium Web', sans-serif;
+  display: flex;
+  flex-direction: column;
+  background-color: #111111;
+  border-radius: 15px;
+  width: 60%;
+  height: 30%;
+  max-width: 450px;
+  padding: 15px 20px 0 20px;
 `;
 
 export const Select = styled.select`
-
+  background-color: #DEDEDE;
 `;
 
 export const SelectOption = styled.option`
-
 `;

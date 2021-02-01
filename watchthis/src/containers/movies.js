@@ -1,11 +1,8 @@
 import React, { useState, useEffect} from 'react';
-import { useHistory } from 'react-router-dom';
 import { Media } from '../components';
 import { HeaderContainer } from '../containers/header';
 
 export function MoviesContainer() {
-    const [featureImage, setFeatureImage] = useState('images/film2.jpg');
-    const history = useHistory();
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [director, setDirector] = useState('');
@@ -13,15 +10,19 @@ export function MoviesContainer() {
     const [duration, setDuration] = useState('');
     const [img_url, setImg] = useState('');
     const [link, setLink] = useState('');
+    const [genre, setGenre] = useState('');
     const [error, setError] = useState('');
-
-    const [mediaName, setMediaName] = useState('Mulan');
-    const [mediaDirector, setMediaDirector] = useState('');
-    const [mediaCast, setMediaCast] = useState('');
-    const [mediaDuration, setMediaDuration] = useState('');
-    const [mediaLink, setMediaLink] = useState('');
-    const [mediaBackground, setBackground] = useState('images/film2.jpg');
-    const [mediaDescription, setMediaDescription] = useState('chinita en casa');
+    
+    const [mediaName, setMediaName] = useState("Tenet");
+    const [mediaDirector, setMediaDirector] = useState('Christopher Nolan');
+    const [mediaCast, setMediaCast] = useState("Anterro Ahonen", "Andrew Howard", "Aleksei Podlesnov", "Adam Cropper", "Aaron Taylor-Johnson");
+    const [mediaDuration, setMediaDuration] = useState('150');
+    const [mediaLink, setMediaLink] = useState('https://www.pelispedia.de/pelicula/tenet-2/');
+    const [mediaBackground, setBackground] = useState('/images/tenet.jpg');
+    const [mediaDescription, setMediaDescription] = useState("Armado solamente con una palabra, Tenet, el protagonista deberá luchar " + 
+    "por la supervivencia del mundo entero y evitar la Tercera Guerra Mundial, en una historia de espionaje internacional."+ 
+    "La misión se desplegará más allá del tiempo real. No son viajes en el tiempo, es inversión..");
+    const [mediaGenre, setMediaGenre] = useState(["Acción"].join(', '));
 
     var name_array = []
     var description_array = []
@@ -30,17 +31,18 @@ export function MoviesContainer() {
     var duration_array = []
     var img_url_array = []
     var link_array = []
+    var genre_array = []
 
 
-    function generateMedia(img_url, name, description, director, cast, duration, link) {  
+    function generateMedia(img_url, name, description, director, cast, duration, link, genre) {  
         return (             
-            <Media.Card onClick={() => setTodo(img_url, name, description, director, cast, duration, link)} >
+            <Media.Card onClick={() => setTodo(img_url, name, description, director, cast, duration, link, genre)} >
                 <Media.CardImage src={img_url}/> 
             </Media.Card>  
         );
     }  
     
-    function setTodo(img_url, name, description, director, cast, duration, link) {
+    function setTodo(img_url, name, description, director, cast, duration, link, genre) {
         setMediaName(name);
         setBackground(img_url);
         setMediaDescription(description);
@@ -48,13 +50,13 @@ export function MoviesContainer() {
         setMediaCast(cast.join(', '));
         setMediaDuration(duration);
         setMediaLink(link);
-
+        setMediaGenre(genre.join(', '));
     }
 
-    function createTodo(img_url, name, description, director, cast, duration, link) {
+    function createTodo(img_url, name, description, director, cast, duration, link, genre) {
         const arr = []
         for (var i = 0; i < name.length; i++) {
-            arr.push(generateMedia(img_url[i], name[i], description[i], director[i], cast[i], duration[i], link[i]));
+            arr.push(generateMedia(img_url[i], name[i], description[i], director[i], cast[i], duration[i], link[i], genre[i]));
         }
         //console.log(namu);
         return arr;
@@ -97,6 +99,9 @@ export function MoviesContainer() {
                                 case 'link':
                                     link_array.push(data.message[i][property])
                                 break
+                                case 'genres':
+                                    genre_array.push(data.message[i][property])
+                                break
                             }
                         }
                     } 
@@ -107,6 +112,7 @@ export function MoviesContainer() {
                     setDuration(duration_array);
                     setImg(img_url_array);
                     setLink(link_array);
+                    setGenre(genre_array);
                 }
             );
         })
@@ -124,10 +130,13 @@ export function MoviesContainer() {
                 <Media.FeatureContent>
                 <Media.FeatureData>
                     <Media.FeatureTitle>{mediaName}</Media.FeatureTitle>
-                    <Media.Content><Media.Category>Descripción:</Media.Category> {mediaDescription}</Media.Content>    
-                    <Media.Content><Media.Category>Dirigido por:</Media.Category> {mediaDirector}</Media.Content>    
-                    <Media.Content><Media.Category>Reparto:</Media.Category> {mediaCast}</Media.Content>    
-                    <Media.Content>Duración: {mediaDuration}min</Media.Content>                
+                    <Media.DivFixer>
+                        <Media.Content><Media.Category>Descripción:</Media.Category> {mediaDescription}</Media.Content>    
+                        <Media.Content><Media.Category>Dirigido por:</Media.Category> {mediaDirector}</Media.Content>    
+                        <Media.Content><Media.Category>Reparto:</Media.Category> {mediaCast}</Media.Content>  
+                        <Media.Content><Media.Category>Géneros: </Media.Category> {mediaGenre}</Media.Content>   
+                        <Media.Content><Media.Category>Duración: </Media.Category>{mediaDuration}min</Media.Content>  
+                    </Media.DivFixer>              
                 </Media.FeatureData>
                     <Media.FeatureLink href={mediaLink} target="_blank">LINK</Media.FeatureLink>
                 </Media.FeatureContent>
@@ -136,7 +145,7 @@ export function MoviesContainer() {
             <Media.Box>
                 <Media.Title>MOVIES</Media.Title>       
                 <Media.Carousel>
-                    {createTodo(img_url, name, description, director, cast, duration, link)}
+                    {createTodo(img_url, name, description, director, cast, duration, link, genre)}
                 </Media.Carousel>
                 <Media.Title>
                 </Media.Title>

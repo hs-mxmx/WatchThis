@@ -46,6 +46,8 @@ export const TitleHeader = styled.a`
   &:hover{
     cursor: pointer;
   }
+  font-family: 'Josefin Sans', sans-serif;
+  margin-top: 10px;
 `;
 
 export const Link = styled.a`

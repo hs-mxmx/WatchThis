@@ -1,7 +1,6 @@
 import { FormContainer } from "../containers/form";
-import { FooterContainer } from "../containers/footer";
 import {Background} from "../components";
-import { Footer, Form } from "../components";
+import { Form } from "../components";
 
 export function Signup() {
     return(

@@ -40,6 +40,7 @@ transform-origin: center;
 export const OptionImage = styled.img`
   width: 100%;
   height: 100%;
+  background-size: cover;
 `;
 
 export const OptionContainer = styled.a`

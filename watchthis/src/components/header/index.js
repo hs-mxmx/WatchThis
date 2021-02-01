@@ -1,9 +1,7 @@
 import React from 'react';
 import { HeaderContainer, TitleHeader, Link, NavLi, NavUl, 
-    NavHeader, Input, Subtitle, ListGroup, ListResult, ListResultImage, ListResultTitle} from './styles/headerStyle';
-import { Link as ReactRouterLink } from 'react-router-dom';
+    NavHeader, Input, ListGroup, ListResult, ListResultImage, ListResultTitle} from './styles/headerStyle';
 // import { Background, ButtonLink, Container, Logo } from './styles/header';
-import { Background } from './styles/headerStyle';
 import * as ROUTES from '../../constants/routes';
 
 
