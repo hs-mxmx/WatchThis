@@ -45,7 +45,7 @@ export function MoviesContainer() {
         setBackground(img_url);
         setMediaDescription(description);
         setMediaDirector(director);
-        setMediaCast(cast);
+        setMediaCast(cast.join(', '));
         setMediaDuration(duration);
         setMediaLink(link);
 
