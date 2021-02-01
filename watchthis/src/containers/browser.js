@@ -22,13 +22,13 @@ export function BrowserContainer({ }) {
                 </Browser.Option>
                 <Browser.Option>
                     <Browser.OptionTitle>SERIES</Browser.OptionTitle>
-                    <Browser.OptionContainer href="/movies">
+                    <Browser.OptionContainer href="/series">
                         <Browser.OptionImage src="images/seriesimage.jpg"></Browser.OptionImage>
                     </Browser.OptionContainer> 
                 </Browser.Option>
                 <Browser.Option>
                     <Browser.OptionTitle>ANIMES</Browser.OptionTitle>
-                    <Browser.OptionContainer href="/movies">
+                    <Browser.OptionContainer href="/anime">
                         <Browser.OptionImage src="images/shonen-.jpg"></Browser.OptionImage>
                     </Browser.OptionContainer> 
                 </Browser.Option>
