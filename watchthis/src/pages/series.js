@@ -1,12 +1,10 @@
-import React, {useState, useContext, useEffect} from 'react';
-import { MediaContainer } from "../containers/media";
-import { Media } from "../components";
+import React from 'react';
+import { SeriesContainer } from "../containers/series";
 
 export function Series() {
 
     return(<>
-            <Media.Title>SERIES</Media.Title>
-            <MediaContainer/>
+            <SeriesContainer/>
         </>
     )
 };

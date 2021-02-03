@@ -122,7 +122,7 @@ export function FormContainer() {
                     </Form.Base>
                     <Form.Break />
                     <Form.Text>
-                        Already have an account? <Form.Link to="/">Sign in!</Form.Link>
+                        Already have an account? <Form.Link to={ROUTES.INDEX}>Sign in!</Form.Link>
                     </Form.Text>
                     <Form.TextSmall>
                         This page is protected by Google reCAPTCHA to ensure you are not a bot.

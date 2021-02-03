@@ -1,5 +1,6 @@
 from flask import request, Response, jsonify
 from database.models.users_models import Users
+from database.models.suscribers_models import Suscribers
 from flask_cors import cross_origin
 import json
 
@@ -28,4 +29,3 @@ def init_manager(app):
             message = {"Error": "Wrong credentials..."}
             print(message)
             return jsonify(message=message), 200
-

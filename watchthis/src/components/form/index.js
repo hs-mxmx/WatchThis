@@ -1,5 +1,7 @@
 import React from 'react';
-import { Container, Base, Error, Title, Text, TextSmall, Link, Input, Submit, Break } from './styles/formStyle';
+import { Container, Base, Error, Title, Text, 
+    TextSmall, Link, Input, Submit, Break, Wrapper, 
+    MailWrapper, Select, SelectOption } from './styles/formStyle';
 
 export default function Form({ children, ...restProps }) {
     return <Container {...restProps}>{children}</Container>;
@@ -43,4 +45,20 @@ Form.Submit = function FormSubmit({ children, ...restProps}){
 
 Form.Break = function FormBreak({ children, ...restProps }) {
     return <Break {...restProps}>{children}</Break>;
+};
+
+Form.Wrapper = function FormWrapper({ children, ...restProps }) {
+    return <Wrapper {...restProps}>{children}</Wrapper>;
+};
+
+Form.MailWrapper = function FormMailWrapper({ children, ...restProps }) {
+    return <MailWrapper {...restProps}>{children}</MailWrapper>;
+};
+
+Form.Select = function FormSelect({ children, ...restProps }) {
+    return <Select {...restProps}>{children}</Select>;
+};
+
+Form.SelectOption = function FormSelectOption({ children, ...restProps }) {
+    return <SelectOption {...restProps}>{children}</SelectOption>;
 };

@@ -1,12 +1,10 @@
-import React, {useState, useContext, useEffect} from 'react';
-import { MediaContainer } from "../containers/media";
-import { Media } from "../components";
+import React from 'react';
+import { AnimeContainer } from "../containers/anime";
 
 export function Anime() {
 
     return(<>
-            <Media.Title>Anime</Media.Title>
-            <MediaContainer/>
+            <AnimeContainer/>
         </>
     )
 };

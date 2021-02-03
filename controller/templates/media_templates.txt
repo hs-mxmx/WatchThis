@@ -1,0 +1,7 @@
+
+Dear ${suscriber_name}
+
+A new ${genre_name} ${media_type} was added,
+Check out our new ${media_type} ${media_name}
+
+WatchthisEs
