@@ -5,13 +5,15 @@ import * as ROUTES from '../constants/routes';
 
 export function FormContainer() {
     const history = useHistory();
-    const [username, setUsername] = useState('');
+    const [username, setUsername,] = useState('');
     const [alias, setAlias] = useState('');
     const [emailAddress, setEmailAddress] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
     const isInvalid = password === '' || emailAddress === '' || password !== confirmPassword || username==='';
+    
+   
 
     const handleSignUp = (event) => {
         event.preventDefault();
@@ -78,7 +80,8 @@ export function FormContainer() {
                             autoComplete="off"
                             placeholder="Complete Name"
                             value={username}
-                            onChange={({ target }) => setUsername(target.value)} 
+                            onChange={({ target }) => setUsername(target.value)}
+                             
                             required/>
                             <Form.TextSmall>
                             Insert your Username
@@ -116,7 +119,7 @@ export function FormContainer() {
                             placeholder="Password"
                             value={confirmPassword}
                             onChange={({ target }) => setConfirmPassword(target.value)} />
-                        <Form.Submit disabled={isInvalid} type="submit">
+                        <Form.Submit onclick="nombrePerfil('username')" disabled={isInvalid} type="submit">
                             Submit
                         </Form.Submit>
                     </Form.Base>

@@ -115,7 +115,7 @@ export const MailWrapper = styled.div`
   background-color: #111111;
   border-radius: 15px;
   width: 60%;
-  height: 30%;
+  height: auto;
   max-width: 450px;
   padding: 15px 20px 0 20px;
 `;
