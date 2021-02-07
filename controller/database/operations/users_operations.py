@@ -1,68 +1,71 @@
-from flask import request, Response
+from flask import request, jsonify
 from database.models.users_models import Users
 import json
-from flask_cors import cross_origin
+from flask_cors import cross_origin, CORS
 
 
 def init_users(app):
+    CORS(app)
 
     @app.route("/users")
-    @cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
+    @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
     def get_users():
         try:
-            users = Users.objects().to_json()
-        except(Exception):
-            message = {"Error": "Invalid get action for users, please check URL and METHOD for request."}
-            print(message)
-            return message
-        return Response(users, mimetype="application/json", status=200)
+            message = Users.objects().to_json()
+            # message = json.loads(message)
+        except Exception:
+            message = {"Error": "Couldn't get any user, try again later..."}
+            return jsonify(message)
+        return jsonify(message=message), 200
+
+    @app.route('/users/<id>', methods=['GET'])
+    @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
+    def get_user(id):
+        try:
+            message = Users.objects.get(id=id).to_json()
+            # message = json.loads(message)
+        except Exception:
+            message = {"Error": "Couldn't get specified user, try again later..."}
+            return jsonify(message=message), 200
+        return jsonify(message=message), 200
 
     @app.route('/users', methods=['POST'])
-    @cross_origin(origin='localhost', headers=['Content- Type','Authorization'])
+    @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
     def add_users_body():
         try:
             # Check json and raw data in bytes
             body = request.get_data()
             body = body.decode('utf8').replace("'", '"')
             body = json.loads(body)
-            users = Users(**body).save().to_json()
-            user = json.loads(users)
-        except(Exception):
-            message = {Exception}
-            print(message)
-            return message
-        return {"Add action": {"id": user["_id"]["$oid"], "user": user["name"]}}
+            user = Users(**body).save().to_json()
+            message = {"Success": 'User created successfully!'}
+            # user = json.loads(user)
+        except Exception:
+            message = {"Error": "Invalid user data, try with another email or username!"}
+            return jsonify(message=message), 200
+        return jsonify(message=message), 200
 
     @app.route('/users/<id>', methods=['PUT'])
-    @cross_origin()
+    @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
     def update_users(id):
         try:
             body = request.get_json()
-            Users.objects.get(id=id).update(**body)
-        except(Exception):
-            message = {"Error": "Invalid update action for users, please check URL and METHOD for request."}
-            print(message)
-            return message
-        return {"Update action": {"user": body["name"]}}
+            user = Users.objects.get(id=id).update(**body)
+            user = Users.objects.get(id=id)
+            message = {"Success": 'User updated successfully!'}
+        except Exception:
+            message = {"Error": "Couldn't update selected user, try again later..."}
+            return jsonify(message=message), 200
+        return jsonify(message=message), 200
 
     @app.route('/users/<id>', methods=['DELETE'])
-    @cross_origin()
+    @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
     def delete_user(id):
         try:
+            user = Users.objects.get(id=id)
             Users.objects.get(id=id).delete()
-        except(Exception):
-            message = {"Error": "Invalid delete action for users, please check URL and METHOD for request."}
-            print(message)
-            return message
-        return {"Delete action": {"id": id}}
-
-    @app.route('/users/<id>', methods=['GET'])
-    @cross_origin()
-    def get_user(id):
-        try:
-            users = Users.objects.get(id=id).to_json()
-        except(Exception):
-            message = {"Error": "Invalid get action for selected user, please check URL and METHOD for request."}
-            print(message)
-            return message
-        return Response(users, mimetype="application/json", status=200)
+            message = {'Success': "User deleted successfully!"}
+        except Exception:
+            message = {"Error": "Couldn't delete selected user, try again later..."}
+            return jsonify(message=message), 200
+        return jsonify(message=message), 200

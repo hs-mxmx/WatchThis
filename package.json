@@ -4,6 +4,7 @@
     "fuse.js": "^6.4.6",
     "normalize.css": "^8.0.1",
     "react-router-dom": "^5.2.0",
+    "react-scrollbars-custom": "^4.0.25",
     "styled-components": "^5.2.1"
   }
 }

@@ -1,6 +1,8 @@
 from flask import Flask
 from database.operations import episodes_operations, movies_operations, \
-    series_operations, seasons_operations, users_operations, medialist_operations
+    series_operations, seasons_operations, users_operations, medialist_operations, \
+    anime_operations, genres_operations, suscribers_operations, manager
+
 from dotenv import load_dotenv
 from pathlib import Path
 from flask_mongoengine import MongoEngine
@@ -36,5 +38,9 @@ class App:
     seasons_operations.init_seasons(app)
     users_operations.init_users(app)
     medialist_operations.init_medialists(app)
+    anime_operations.init_animes(app)
+    genres_operations.init_genres(app)
+    suscribers_operations.init_suscribers(app)
+    manager.init_manager(app)
 
     app.run()

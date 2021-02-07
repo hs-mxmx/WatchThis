@@ -1,12 +1,13 @@
 import styled from 'styled-components/macro';
 
 export const Container = styled.div`
-  display: flex;
-  align-items: center;
-  height: 50%;
-  width: 50%;
-  flex-direction: column;
-
+font-family: 'Josefin Sans', sans-serif;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 100%;
+width: 50%;
+flex-direction: column;
 `;
 
 export const Title = styled.h1`
@@ -18,6 +19,7 @@ export const Title = styled.h1`
 `;
 
 export const Subtitle = styled.h3`
+  font-family: 'Titillium Web', sans-serif;
   color: white;
   font-style: italic;
 `;

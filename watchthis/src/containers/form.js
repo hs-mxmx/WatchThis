@@ -5,13 +5,15 @@ import * as ROUTES from '../constants/routes';
 
 export function FormContainer() {
     const history = useHistory();
-    const [username, setUsername] = useState('');
+    const [username, setUsername,] = useState('');
     const [alias, setAlias] = useState('');
     const [emailAddress, setEmailAddress] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
     const isInvalid = password === '' || emailAddress === '' || password !== confirmPassword || username==='';
+    
+   
 
     const handleSignUp = (event) => {
         event.preventDefault();
@@ -31,22 +33,34 @@ export function FormContainer() {
             )}
         )
         .then(response => {
-            console.log(JSON.stringify(
-                {"name": username,
-                "username": alias,
-                "email": emailAddress,
-                "password": password
-                }
-            ))
-        })
-        .then(() => {
-            history.push(ROUTES.HOME)
+            return response.json().then( (data) => 
+                
+                {//console.log(data)
+                    if ("Error" in data.message) {
+                    setUsername('');
+                    setAlias('');
+                    setPassword('');
+                    setConfirmPassword('');
+                    setEmailAddress('');
+                    setError(data.message["Error"]);
+                } else {
+                    history.push({
+                        pathname: ROUTES.BROWSE,
+                        state: { detail: {
+                            'password': password,
+                            'email': emailAddress,
+                            'message': data.message["Success"]
+                        } }
+                    });
+                }}
+            );
         })
         .catch((error) => {
             setUsername('');
             setAlias('');
             setPassword('');
             setConfirmPassword('');
+            console.log(error)
             setError(error.message);
         });;
 
@@ -66,7 +80,8 @@ export function FormContainer() {
                             autoComplete="off"
                             placeholder="Complete Name"
                             value={username}
-                            onChange={({ target }) => setUsername(target.value)} 
+                            onChange={({ target }) => setUsername(target.value)}
+                             
                             required/>
                             <Form.TextSmall>
                             Insert your Username
@@ -104,13 +119,13 @@ export function FormContainer() {
                             placeholder="Password"
                             value={confirmPassword}
                             onChange={({ target }) => setConfirmPassword(target.value)} />
-                        <Form.Submit disabled={isInvalid} type="submit">
+                        <Form.Submit onclick="nombrePerfil('username')" disabled={isInvalid} type="submit">
                             Submit
                         </Form.Submit>
                     </Form.Base>
                     <Form.Break />
                     <Form.Text>
-                        Already have an account? <Form.Link to="/">Sign in!</Form.Link>
+                        Already have an account? <Form.Link to={ROUTES.INDEX}>Sign in!</Form.Link>
                     </Form.Text>
                     <Form.TextSmall>
                         This page is protected by Google reCAPTCHA to ensure you are not a bot.
