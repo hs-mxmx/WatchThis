@@ -22,7 +22,7 @@ export function HeaderContainer() {
                 <NavLi><Header.Link href={ROUTES.SERIES}>Series</Header.Link></NavLi>
                 <NavLi><Header.Link href={ROUTES.ANIME}>Animes</Header.Link></NavLi>
                 <NavLi><Header.Link href={ROUTES.BROWSE}>Browse</Header.Link></NavLi>
-                <NavLi><Header.Link href={ROUTES.MOVIES}>Profile</Header.Link></NavLi>
+                <NavLi><Header.Link href={ROUTES.PROFILE}>Profile</Header.Link></NavLi>
                 </NavUl>                 
             </NavHeader>    
         </Header>
